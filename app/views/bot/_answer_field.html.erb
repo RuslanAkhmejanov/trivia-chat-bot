@@ -1,0 +1,11 @@
+<div class="card-footer">
+	<%= form_with(url: submit_answer_path, html: {id: "answer-form"}, data: { controller: "reset-form", action: "turbo:submit-end->reset-form#reset" }) do %>
+		<div class="input-group">
+			<%= text_field_tag(name="answer", value=nil, class: "form-control", id: "answer-input", placeholder: "Type your answer...") %>
+			<div class="input-group-append">
+				<%= button_tag(content="Send", class: "btn btn-primary", name: "send_button") %>
+			</div>
+		</div>
+	<% end %>
+	<button class="btn btn-danger rounded-circle ml-2 stop-game-button"><i class="fas fa-stop"></i></button>
+</div>

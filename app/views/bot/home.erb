@@ -1,0 +1,16 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-6 offset-md-3">
+			<div class="card">
+				<div class="card-header">Chat Box</div>
+				<div id="chat-messages" class="card-body">
+					<!-- Messages will be displayed here -->
+				</div>
+				<div id="chat-buttons" class="d-flex justify-content-center">
+					<!-- Play button that has to be replaced with a text field and send button -->
+					<%= button_to(name="Play", path=start_game_path, remote: true, class: "btn btn-success play-button") %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
