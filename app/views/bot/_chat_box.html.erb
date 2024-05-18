@@ -1,0 +1,5 @@
+<!-- Display the first question -->
+<%= turbo_frame_tag(id="chat-messages", class: "card-body") do %>
+	<!-- Messages will be displayed here -->
+	<%= question.question %>
+<% end %>

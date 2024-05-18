@@ -17,39 +17,17 @@ class BotController < ApplicationController
     the OR= operator is used to assign zero only if it has not already been done
 =end
     # session[:answered_questions] ||= 0
-    # response = HTTParty.get("https://opentdb.com/api.php?amount=20")
-    # parsed_response = response.parsed_response
-    # trivias = parsed_response["results"]
-    # for trivia in trivias do
-    #   question_type = trivia["type"]
-    #   difficulty = trivia["difficulty"]
-    #   # to get rid of special charachters
-    #   category = CGI.unescapeHTML(trivia["category"])
-    #   question = CGI.unescapeHTML(trivia["question"])
-    #   correct_answer = CGI.unescapeHTML(trivia["correct_answer"])
-
-    #   # incorrect_answers are stored in an array
-    #   # incorrect_answers = trivia["incorrect_answers"]
-    #   # for incorrect_answer in incorrect_answers do
-    #   #   CGI.unescapeHTML(incorrect_answer)
-    #   # end
-
-    #   Trivia.create(
-    #     question_type: question_type,
-    #     difficulty: difficulty,
-    #     category: category,
-    #     question: question,
-    #     correct_answer: correct_answer
-    #   )
-
-    # end
 
     question = Trivia.find(session[:question_id])
     render turbo_stream: [
-      turbo_stream.replace("chat-buttons", partial: "answer_field"),
-      turbo_stream.append("chat-messages", partial: "question", locals: {question: question})
+      turbo_stream.replace("chat-buttons", partial: "chat_box", locals: {question: question}),
+      turbo_stream.append("chat-card", partial: "answer_field")
     ]
   end
+
+  # def stop_game
+  #   render turbo_stream: turbo_stream.remove("chat-buttons")
+  # end
 
   def submit_answer
     session[:questions_answered_number] += 1
