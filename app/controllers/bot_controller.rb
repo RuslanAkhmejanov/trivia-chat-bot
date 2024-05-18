@@ -20,8 +20,8 @@ class BotController < ApplicationController
 
     question = Trivia.find(session[:question_id])
     render turbo_stream: [
-      turbo_stream.replace("chat-buttons", partial: "chat_box", locals: {question: question}),
-      turbo_stream.append("chat-card", partial: "answer_field")
+      turbo_stream.replace("chat-buttons", partial: "/bot/partials/chat_box", locals: { question: question }),
+      turbo_stream.append("chat-card", partial: "/bot/partials/answer_field")
     ]
   end
 
@@ -34,20 +34,19 @@ class BotController < ApplicationController
 
     if params[:answer].downcase == Trivia.find(session[:question_id]).correct_answer.downcase
     # the key is the name we assigned to the name attribute in the view
-      answer = "correct"
+      answer = "Correct"
     else
-      answer = "incorrect, here is the correct answer\n" + Trivia.find(session[:question_id]).correct_answer + "\n"
+      answer = "Incorrect, here is the correct answer:\n" + Trivia.find(session[:question_id]).correct_answer + "\n"
     end
 
     session[:question_id] += 1
-    puts session[:question_id]
 
     next_question = Trivia.find(session[:question_id])
 
     render turbo_stream: turbo_stream.append(
       "chat-messages",
-      partial: "answer",
-      locals: {answer: answer, next_question: next_question}
+      partial: "/bot/partials/answer",
+      locals: { answer: answer, next_question: next_question }
     )
 
   end

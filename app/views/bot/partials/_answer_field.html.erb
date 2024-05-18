@@ -7,6 +7,5 @@
 				</div>
 			</div>
 		<% end %>
-		<%# <%= button_to(name="Stop", path=stop_game_path, remote: true, class: "btn btn-danger rounded-circle ml-2 stop-game-button") %>
 		<%= button_tag(name="Stop", id: "stop-button", type: 'button', class: "btn btn-danger rounded-circle ml-2 stop-game-button", data: { controller: "stop-game", action: "click->stop-game#handleClick"}) %>
 <% end %>

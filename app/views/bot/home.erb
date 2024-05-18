@@ -2,13 +2,10 @@
 	<div class="row">
 		<div class="col-md-6 offset-md-3">
 			<%= turbo_frame_tag(id="chat-card", class: "card") do %>
-				<div class="card-header">Chat Box</div>
-				<%= turbo_frame_tag 'chat-buttons0', style: 'display: none;' do %>
-  					<%= render(partial: "play_button") %>
-				<% end %>
+				<div class="card-header">Chat</div>
 				<%= turbo_frame_tag(id="chat-buttons", class: "d-flex justify-content-center", data: { controller: "copy-play-button", action: "turbo:load->copy-play-button#connect"}) do %>
 					<!-- Play button or text field with a send button will be displayed here -->
-					<%= render(partial: "play_button") %>
+					<%= render(partial: "/bot/partials/play_button") %>
 				<% end %>
 			<% end %>
 		</div>
